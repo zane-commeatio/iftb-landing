@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Michroma } from "next/font/google"
+import Link from "next/link"
 
 const font = Michroma({ weight: "400", subsets: ["latin"] })
 
@@ -34,24 +35,28 @@ export default function Home() {
 							description="Online media"
 							image="/cryptopolitain-logo.png"
 							year="2018"
+							link="https://www.lecryptopolitain.fr"
 						/>
 						<Card
 							title="Ecole Crypto"
 							description="Mentorship platform"
 							image="/ec.png"
 							year="2020"
+							link="https://ecolecrypto.fr"
 						/>
 						<Card
 							title="Asgard DAO"
 							description="R&D Organisation"
 							image="/asgard-logo.png"
 							year="2022"
+							link="https://asgardao.io"
 						/>
 						<Card
 							title="Learnify"
 							description="Gamified education app"
 							image="/learnify.png"
 							year="2023"
+							link="https://learnify.xyz"
 						/>
 					</div>
 				</div>
@@ -76,23 +81,26 @@ type CardProps = {
 	description: string
 	image: string
 	year: string
+	link: string
 }
 
-function Card({ title, description, image, year }: CardProps) {
+function Card({ title, description, image, year, link }: CardProps) {
 	return (
-		<div className="flex flex-col items-center justify-center h-52 w-48 border border-white/5 px-2 rounded-xl">
-			<div className="relative w-full aspect-[10/8] overflow-hidden rounded-xl">
-				<Image
-					src={image}
-					alt={title}
-					fill
-					style={{ objectFit: "contain" }}
-				/>
-			</div>
+		<Link href={link} target="_blank">
+			<div className="flex flex-col items-center justify-center h-52 w-48 border border-white/5 px-2 rounded-xl">
+				<div className="relative w-full aspect-[10/8] overflow-hidden rounded-xl">
+					<Image
+						src={image}
+						alt={title}
+						fill
+						style={{ objectFit: "contain" }}
+					/>
+				</div>
 
-			<h3 className="text-xl font-bold">{title}</h3>
-			<p className="text-center">{description}</p>
-			<p className="text-gray-500 text-sm">{year}</p>
-		</div>
+				<h3 className="text-xl font-bold">{title}</h3>
+				<p className="text-center">{description}</p>
+				<p className="text-gray-500 text-sm">{year}</p>
+			</div>
+		</Link>
 	)
 }
